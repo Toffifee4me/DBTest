@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class DB_Access {
 
-    private DB_Database database = DB_Database.getInstance();
+    private final DB_Database database = DB_Database.getInstance();
 
     //Implement DB_Access as Singleton
     private static DB_Access theInstance = null;
@@ -34,7 +34,7 @@ public class DB_Access {
     }
 
     public Vector<String> getAllPublishers() throws SQLException {
-        Vector<String> vec = new Vector();
+        Vector<String> vec = new Vector<>();
 
         Statement stat = database.getStatement();
         String sqlStr = "SELECT * FROM publisher";
@@ -42,8 +42,8 @@ public class DB_Access {
         database.releaseStatement(stat);
 
         while (rs.next()) {
-            String bookname = rs.getString("name");
-            vec.add(bookname);
+            String bookName = rs.getString("name");
+            vec.add(bookName);
 
         }
         return vec;
@@ -59,6 +59,7 @@ public class DB_Access {
             for (String pub : dba.getAllPublishers()) {
                 System.out.println(pub);
             }
+            dba.database.disconnect();
         } catch (SQLException ex) {
             Logger.getLogger(DB_Access.class.getName()).log(Level.SEVERE, null, ex);
         }

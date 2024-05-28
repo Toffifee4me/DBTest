@@ -18,8 +18,8 @@ import java.util.Queue;
 public class DB_CachedConnection
 {
 
-    private Queue<Statement> statQueue = new LinkedList<>();
-    private Connection conn;
+    private final Queue<Statement> statQueue = new LinkedList<>();
+    private final Connection conn;
 
     public DB_CachedConnection(Connection conn)
     {
